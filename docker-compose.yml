@@ -22,7 +22,7 @@ services:
             - "443:443"
         networks:
             - app-network
-
+    
     mongodb:
         container_name: laravel-typeahead-mongodb
         image: mongo:latest
@@ -37,6 +37,22 @@ services:
         networks:
             - app-network
     
+    mongo-express:
+        image: mongo-express
+        container_name: laravel-typeahead-mongo-express
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+            - ME_CONFIG_MONGODB_SERVER=laravel-typeahead-mongodb
+            - ME_CONFIG_BASICAUTH_USERNAME=admin
+            - ME_CONFIG_BASICAUTH_PASSWORD=ihavealongpassword
+        depends_on:
+            - mongodb
+        ports:
+            - "8081:8081"
+        networks:
+            - app-network
+
 networks:
     app-network:
         driver: bridge
