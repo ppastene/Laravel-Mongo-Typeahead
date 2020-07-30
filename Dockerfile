@@ -1,8 +1,12 @@
 FROM php:7.4-fpm
 
-RUN apt-get update -y
-RUN apt-get install -y \
-    zip unzip
+RUN apt-get update && apt-get install -y \
+    git zip unzip libcurl4-openssl-dev pkg-config libssl-dev
+
+RUN docker-php-ext-install opcache
+RUN pecl install mongodb \
+#?
+&& echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini
 
 WORKDIR /var/www/html
 
