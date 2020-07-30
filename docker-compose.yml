@@ -23,6 +23,20 @@ services:
         networks:
             - app-network
 
+    mongodb:
+        container_name: laravel-typeahead-mongodb
+        image: mongo:latest
+        environment:
+            - MONGO_INITDB_DATABASE=piu_anyhowstep
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=password
+        volumes:
+            - mongodb:/data/db
+        ports:
+            - 27017:27017
+        networks:
+            - app-network
+    
 networks:
     app-network:
         driver: bridge
