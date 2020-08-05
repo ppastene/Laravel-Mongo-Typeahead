@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-install opcache
 RUN pecl install mongodb \
-#?
 && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini
 
 WORKDIR /var/www/html

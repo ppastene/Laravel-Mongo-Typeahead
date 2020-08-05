@@ -50,6 +50,7 @@ services:
             - mongodb
         ports:
             - "8081:8081"
+        restart: on-failure
         networks:
             - app-network
 
