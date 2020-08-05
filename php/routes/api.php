@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+*/
+
+Route::group(['prefix' => 'songs'], function() {
+    Route::get('/', 'SongController@index');
+    Route::get('/{request}', 'SongController@search');
 });
